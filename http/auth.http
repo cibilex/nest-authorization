@@ -1,0 +1,16 @@
+POST  http://localhost:8000/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"cibilex@cibilex.com",
+    "password":"12345678"
+
+}
+
+###
+GET http://localhost:8000/user/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjaWJpbGV4QGNpYmlsZXguY29tIiwiaWF0IjoxNzA1ODI5NTk1fQ.O5YII0UzPTE0SVdgJ9B6u1ZzkkI3ip5MD2O7WKqz7n0
+
+
+
+###
