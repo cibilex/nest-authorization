@@ -23,7 +23,6 @@ export class AuthGuard implements CanActivate {
     ]);
     if (!auth) return true;
     const request = ctx.switchToHttp().getRequest<FastifyRequest>();
-    console.log('gi world');
     const token = this.getBearerToken(request);
     const payload = await this.verify(token);
     request.user = payload;
@@ -33,12 +32,11 @@ export class AuthGuard implements CanActivate {
 
   private async verify(token: string) {
     try {
-      const payload = (await this.jwtService.verifyAsync(token, {
-        secret: 'hi world',
-      })) as UserT;
+      const payload = this.jwtService.verify(token, {
+        algorithms: ['RS256'],
+      }) as UserT;
       return payload;
     } catch (error) {
-      console.log(error);
       throw new ForbiddenException();
     }
   }

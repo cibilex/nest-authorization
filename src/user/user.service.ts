@@ -23,7 +23,7 @@ export class UserService {
     },
   ];
 
-  login({ password, ...data }: LoginUserDto) {
+  async login({ password, ...data }: LoginUserDto) {
     const user = this.users.find((user) => user.email === data.email);
     if (!user)
       throw new BadRequestException('User not found with entered email');
@@ -31,7 +31,10 @@ export class UserService {
       throw new BadRequestException(
         'Entered password does not match with the user password',
       );
-    const token = this.jwtService.sign({ id: user.id, email: user.email });
+    const token = this.jwtService.sign({
+      id: user.id,
+      email: user.email,
+    });
     return token;
   }
 
