@@ -63,7 +63,10 @@ const publicKey = `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzk1tj+8Q3vjJNzt4Qk0A7g
       signOptions: {
         algorithm: 'RS256',
       },
-      privateKey: myKey,
+      verifyOptions: {
+        algorithms: ['RS256'],
+      },
+      secret: myKey,
       publicKey: publicKey,
     }),
   ],
